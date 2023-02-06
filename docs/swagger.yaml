@@ -1,0 +1,1927 @@
+basePath: /
+definitions:
+  aggregate.HomeStatics:
+    properties:
+      monthPlayCount:
+        description: 本月播放量
+        example: "0"
+        type: string
+      monthPlayUserCount:
+        description: 本月播放用户数
+        example: "0"
+        type: string
+      monthVisitCount:
+        description: 本月访问量
+        example: "0"
+        type: string
+      monthVisitUserCount:
+        description: 本月访问用户数
+        example: "0"
+        type: string
+      todayPlayCount:
+        description: 今日播放量
+        example: "0"
+        type: string
+      todayPlayUserCount:
+        description: 今日播放用户数
+        example: "0"
+        type: string
+      todayVisitCount:
+        description: 今日访问量
+        example: "0"
+        type: string
+      todayVisitUserCount:
+        description: 今日访问用户数
+        example: "0"
+        type: string
+    type: object
+  aggregate.VideoItemPlayCount:
+    properties:
+      createdAt:
+        description: 创建日期
+        type: string
+      etag:
+        description: etag
+        type: string
+      id:
+        example: "0"
+        type: string
+      playCount:
+        description: 播放量
+        type: integer
+      poster:
+        description: 缩略图
+        type: string
+      title:
+        description: 视频标题
+        type: string
+      url:
+        description: 视频地址
+        type: string
+      videoId:
+        description: 视频信息ID
+        example: "0"
+        type: string
+    type: object
+  command.CreateSettingDict:
+    properties:
+      code:
+        description: 字典编码
+        type: string
+      name:
+        description: 字典名称
+        type: string
+    type: object
+  command.CreateSettingDictValues:
+    properties:
+      dictId:
+        description: 字典ID
+        example: "0"
+        type: string
+      key:
+        description: 字典值Key
+        type: string
+      value:
+        description: 字典值Value
+        type: string
+    required:
+    - dictId
+    - key
+    - value
+    type: object
+  command.CreateSettingMenu:
+    properties:
+      name:
+        description: 菜单英文名称
+        type: string
+      parentId:
+        description: 父级ID
+        example: "0"
+        type: string
+    required:
+    - name
+    type: object
+  command.CreateSystemEvent:
+    properties:
+      event:
+        description: 埋点事件
+        type: string
+      ip:
+        description: 访问IP
+        type: string
+      relationId:
+        description: 关联ID
+        example: "0"
+        type: string
+    type: object
+  command.CreateSystemRole:
+    properties:
+      code:
+        description: 角色编码
+        type: string
+      comment:
+        description: 备注
+        type: string
+      name:
+        description: 角色名称
+        type: string
+    type: object
+  command.CreateSystemUser:
+    properties:
+      nickName:
+        description: 用户昵称
+        type: string
+      password:
+        description: 密码
+        type: string
+      phone:
+        description: 手机号
+        type: string
+      roleIds:
+        description: 角色
+        items:
+          type: string
+        type: array
+      userName:
+        description: 用户名称
+        type: string
+    type: object
+  command.CreateVideoInfo:
+    properties:
+      comment:
+        description: 备注
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      name:
+        description: 视频名称
+        type: string
+      video:
+        description: 视频地址，存储为数组json
+        items:
+          $ref: '#/definitions/entity.VideoInfoItem'
+        type: array
+    type: object
+  command.DeleteSettingDict:
+    properties:
+      id:
+        description: ID
+        example: "0"
+        type: string
+    type: object
+  command.DeleteSettingDictValues:
+    properties:
+      id:
+        description: ID
+        example: "0"
+        type: string
+      ids:
+        items:
+          type: string
+        type: array
+    type: object
+  command.DeleteSettingMenu:
+    properties:
+      ids:
+        description: ID
+        items:
+          type: string
+        type: array
+    type: object
+  command.DeleteSystemRole:
+    properties:
+      id:
+        description: 角色ID
+        example: "0"
+        type: string
+    type: object
+  command.DeleteSystemUser:
+    properties:
+      id:
+        description: ID
+        example: "0"
+        type: string
+    type: object
+  command.DeleteVideoInfo:
+    properties:
+      id:
+        example: "0"
+        type: string
+    type: object
+  command.Login:
+    properties:
+      password:
+        type: string
+      userName:
+        type: string
+    required:
+    - password
+    - userName
+    type: object
+  command.ModifyPassword:
+    properties:
+      confirmPassword:
+        description: 确认密码
+        type: string
+      oldPassword:
+        description: 旧密码
+        type: string
+      password:
+        description: 密码
+        type: string
+    type: object
+  command.ResetPassword:
+    properties:
+      confirmPassword:
+        description: 确认密码
+        type: string
+      password:
+        description: 密码
+        type: string
+      userId:
+        description: 用户ID
+        example: "0"
+        type: string
+    type: object
+  command.UpdateSettingDict:
+    properties:
+      code:
+        description: 字典编码
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      name:
+        description: 字典名称
+        type: string
+    type: object
+  command.UpdateSettingDictValues:
+    properties:
+      dictId:
+        description: 字典ID
+        example: "0"
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      key:
+        description: 字典值Key
+        type: string
+      value:
+        description: 字典值Value
+        type: string
+    required:
+    - dictId
+    - id
+    - key
+    - value
+    type: object
+  command.UpdateSettingMenu:
+    properties:
+      component:
+        description: 组件视图
+        type: string
+      hidden:
+        description: 隐藏菜单
+        type: integer
+      hideBreadCrumb:
+        description: 隐藏面包屑
+        type: integer
+      id:
+        description: ID
+        example: "0"
+        type: string
+      meta:
+        description: Meta
+        properties:
+          icon:
+            description: 图标
+            type: string
+          title:
+            description: 显示名称
+            type: string
+          type:
+            type: string
+        required:
+        - title
+        - type
+        type: object
+      name:
+        description: 菜单英文名称
+        type: string
+      parentId:
+        description: 父级ID
+        example: "0"
+        type: string
+      path:
+        description: 路由地址
+        type: string
+      sort:
+        description: 排序
+        type: integer
+    required:
+    - id
+    - meta
+    - name
+    type: object
+  command.UpdateSystemRole:
+    properties:
+      code:
+        description: 角色编码
+        type: string
+      comment:
+        description: 备注
+        type: string
+      id:
+        description: 角色ID
+        example: "0"
+        type: string
+      name:
+        description: 角色名称
+        type: string
+    type: object
+  command.UpdateSystemUser:
+    properties:
+      id:
+        description: ID
+        example: "0"
+        type: string
+      nickName:
+        description: 用户昵称
+        type: string
+      password:
+        description: 密码
+        type: string
+      phone:
+        description: 手机号
+        type: string
+      roleIds:
+        description: 角色
+        items:
+          type: string
+        type: array
+      userName:
+        description: 用户名称
+        type: string
+    type: object
+  command.UpdateVideoInfo:
+    properties:
+      comment:
+        description: 备注
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      name:
+        description: 视频名称
+        type: string
+      video:
+        description: 视频地址，存储为数组json
+        items:
+          $ref: '#/definitions/entity.VideoInfoItem'
+        type: array
+    type: object
+  dto.MenuMeta:
+    properties:
+      icon:
+        description: 图标
+        type: string
+      title:
+        description: 显示名称
+        type: string
+      type:
+        description: 类型 menu-菜单 iframe-Iframe link-外链 button-按钮
+        type: string
+    type: object
+  dto.SettingMenu:
+    properties:
+      alias:
+        description: 别名
+        type: string
+      children:
+        description: 子集
+        items:
+          $ref: '#/definitions/dto.SettingMenu'
+        type: array
+      component:
+        description: 组件视图
+        type: string
+      hidden:
+        description: 隐藏菜单
+        type: integer
+      hideBreadCrumb:
+        description: 隐藏面包屑
+        type: integer
+      id:
+        description: ID
+        example: "0"
+        type: string
+      meta:
+        $ref: '#/definitions/dto.MenuMeta'
+        description: Meta
+      name:
+        description: 菜单英文名称
+        type: string
+      parentId:
+        description: 父级ID
+        example: "0"
+        type: string
+      path:
+        description: 路由地址
+        type: string
+    type: object
+  dto.SystemRolePermission:
+    properties:
+      children:
+        items:
+          $ref: '#/definitions/dto.SystemRolePermission'
+        type: array
+      id:
+        example: "0"
+        type: string
+      label:
+        type: string
+    type: object
+  entity.CommonLabelValue:
+    properties:
+      label:
+        type: string
+      value:
+        type: string
+    type: object
+  entity.SettingDict:
+    properties:
+      code:
+        description: 字典编码
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      name:
+        description: 字典名称
+        type: string
+    type: object
+  entity.SettingDictValues:
+    properties:
+      dictId:
+        description: 字典ID
+        example: "0"
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      key:
+        description: 字典值Key
+        type: string
+      value:
+        description: 字典值Value
+        type: string
+    type: object
+  entity.SettingMenu:
+    properties:
+      component:
+        description: 组件视图
+        type: string
+      hidden:
+        description: 隐藏菜单
+        type: integer
+      hideBreadCrumb:
+        description: 隐藏面包屑
+        type: integer
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      name:
+        description: 菜单英文名称
+        type: string
+      parentId:
+        description: 父级ID
+        example: "0"
+        type: string
+      path:
+        description: 路由地址
+        type: string
+      sort:
+        description: 排序
+        type: integer
+      title:
+        description: 显示名称
+        type: string
+      type:
+        description: 类型 menu-菜单 iframe-Iframe link-外链 button-按钮
+        type: string
+    type: object
+  entity.SystemEvent:
+    properties:
+      event:
+        description: 埋点事件
+        type: string
+      eventTime:
+        description: 时间
+        type: string
+      id:
+        description: ID
+        type: integer
+      ip:
+        description: 访问IP
+        type: string
+      region:
+        description: ip对应的区域
+        type: string
+      relationId:
+        description: 关联ID
+        example: "0"
+        type: string
+    type: object
+  entity.SystemRole:
+    properties:
+      code:
+        description: 角色编码
+        type: string
+      comment:
+        description: 备注
+        type: string
+      id:
+        description: 角色ID
+        example: "0"
+        type: string
+      name:
+        description: 角色名称
+        type: string
+      permissions:
+        description: 权限
+        items:
+          type: integer
+        type: array
+    type: object
+  entity.SystemUser:
+    properties:
+      id:
+        description: ID
+        example: "0"
+        type: string
+      lastLoginIp:
+        description: 最近登录IP
+        type: string
+      lastLoginTime:
+        description: 最近登录时间
+        type: string
+      nickName:
+        description: 用户昵称
+        type: string
+      phone:
+        description: 手机号
+        type: string
+      registerTime:
+        description: 注册时间
+        type: string
+      roleIds:
+        description: 角色
+        items:
+          type: string
+        type: array
+      userName:
+        description: 用户名称
+        type: string
+    type: object
+  entity.VideoInfo:
+    properties:
+      comment:
+        description: 备注
+        type: string
+      createdAt:
+        description: 创建时间
+        type: string
+      createdBy:
+        description: 创建人ID
+        example: "0"
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      name:
+        description: 视频名称
+        type: string
+    type: object
+  entity.VideoInfoItem:
+    properties:
+      etag:
+        description: etag
+        type: string
+      id:
+        description: ID
+        example: "0"
+        type: string
+      poster:
+        description: 缩略图
+        type: string
+      title:
+        description: 视频标题
+        type: string
+      url:
+        description: 视频地址
+        type: string
+      videoId:
+        description: 视频信息ID
+        example: "0"
+        type: string
+    type: object
+  query.ListSettingDict:
+    properties:
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页行数
+        type: integer
+    type: object
+  query.ListSettingDictValues:
+    properties:
+      code:
+        description: 编码
+        type: string
+      dictId:
+        description: 字典ID
+        example: "0"
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页行数
+        type: integer
+    type: object
+  query.ListSettingMenu:
+    type: object
+  query.ListSystemRole:
+    properties:
+      name:
+        description: 角色名称
+        type: string
+      orderBy:
+        description: 排序规则
+        type: string
+      orderColumn:
+        description: 排序字段
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页行数
+        type: integer
+    type: object
+  query.ListSystemUser:
+    properties:
+      lastLoginDate:
+        description: 登录日期
+        type: string
+      nickName:
+        description: 昵称
+        type: string
+      orderBy:
+        description: 排序规则
+        type: string
+      orderColumn:
+        description: 排序字段
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页行数
+        type: integer
+      userName:
+        description: 名称
+        type: string
+    type: object
+  query.ListVideoInfo:
+    properties:
+      name:
+        description: 视频名称
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页行数
+        type: integer
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Example Api
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Swagger API
+  version: "1.0"
+paths:
+  /api/v1/auth/dict:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: object
+              type: object
+      summary: 获取登录用户菜单
+      tags:
+      - 用户授权
+  /api/v1/auth/menu:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/dto.SettingMenu'
+                  type: array
+              type: object
+      summary: 获取登录用户菜单
+      tags:
+      - 用户授权
+  /api/v1/auth/user:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      token:
+                        type: string
+                      userInfo:
+                        $ref: '#/definitions/entity.SystemUser'
+                    type: object
+              type: object
+      summary: 获取登录用户信息
+      tags:
+      - 用户授权
+  /api/v1/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 登录信息
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/command.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      token:
+                        type: string
+                      userInfo:
+                        $ref: '#/definitions/entity.SystemUser'
+                    type: object
+              type: object
+      summary: 登录
+      tags:
+      - 用户授权
+  /api/v1/setting/dict:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除数据字典信息
+        in: body
+        name: deleteSettingDict
+        required: true
+        schema:
+          $ref: '#/definitions/command.DeleteSettingDict'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDict'
+              type: object
+      summary: 删除数据字典
+      tags:
+      - 数据字典信息
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: code
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDict'
+              type: object
+      summary: 获取数据字典
+      tags:
+      - 数据字典信息
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建数据字典信息
+        in: body
+        name: createSettingDict
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateSettingDict'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDict'
+              type: object
+      summary: 创建数据字典
+      tags:
+      - 数据字典信息
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改数据字典信息
+        in: body
+        name: updateSettingDict
+        required: true
+        schema:
+          $ref: '#/definitions/command.UpdateSettingDict'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDict'
+              type: object
+      summary: 修改数据字典
+      tags:
+      - 数据字典信息
+  /api/v1/setting/dict/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改数据字典信息
+        in: body
+        name: listSettingDict
+        required: true
+        schema:
+          $ref: '#/definitions/query.ListSettingDict'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/entity.SettingDict'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+      summary: 数据字典列表
+      tags:
+      - 数据字典信息
+  /api/v1/setting/dict/values:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除字典值
+        in: body
+        name: deleteSettingDictValues
+        required: true
+        schema:
+          $ref: '#/definitions/command.DeleteSettingDictValues'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDictValues'
+              type: object
+      summary: 删除字典值
+      tags:
+      - 字典值
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDictValues'
+              type: object
+      summary: 获取字典值
+      tags:
+      - 字典值
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建字典值
+        in: body
+        name: createSettingDictValues
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateSettingDictValues'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDictValues'
+              type: object
+      summary: 创建字典值
+      tags:
+      - 字典值
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改字典值
+        in: body
+        name: updateSettingDictValues
+        required: true
+        schema:
+          $ref: '#/definitions/command.UpdateSettingDictValues'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingDictValues'
+              type: object
+      summary: 修改字典值
+      tags:
+      - 字典值
+  /api/v1/setting/dict/values/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改字典值
+        in: body
+        name: listSettingDictValues
+        required: true
+        schema:
+          $ref: '#/definitions/query.ListSettingDictValues'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/entity.SettingDictValues'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+      summary: 字典值列表
+      tags:
+      - 字典值
+  /api/v1/setting/menu:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除菜单管理信息
+        in: body
+        name: deleteSettingMenu
+        required: true
+        schema:
+          $ref: '#/definitions/command.DeleteSettingMenu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingMenu'
+              type: object
+      summary: 删除菜单管理
+      tags:
+      - 菜单管理信息
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        example: "0"
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingMenu'
+              type: object
+      summary: 获取菜单管理
+      tags:
+      - 菜单管理信息
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建菜单管理信息
+        in: body
+        name: createSettingMenu
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateSettingMenu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingMenu'
+              type: object
+      summary: 创建菜单管理
+      tags:
+      - 菜单管理信息
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改菜单管理信息
+        in: body
+        name: updateSettingMenu
+        required: true
+        schema:
+          $ref: '#/definitions/command.UpdateSettingMenu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SettingMenu'
+              type: object
+      summary: 修改菜单管理
+      tags:
+      - 菜单管理信息
+  /api/v1/setting/menu/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改菜单管理信息
+        in: body
+        name: listSettingMenu
+        required: true
+        schema:
+          $ref: '#/definitions/query.ListSettingMenu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/entity.SettingMenu'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+      summary: 菜单管理列表
+      tags:
+      - 菜单管理信息
+  /api/v1/system/event:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建埋点记录
+        in: body
+        name: createSystemEvent
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateSystemEvent'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemEvent'
+              type: object
+      summary: 创建埋点记录
+      tags:
+      - 埋点记录信息
+  /api/v1/system/event/home/bar:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/aggregate.HomeStatics'
+              type: object
+      summary: 首页统计柱状图
+      tags:
+      - 首页
+  /api/v1/system/event/home/statics:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/aggregate.HomeStatics'
+              type: object
+      summary: 首页统计
+      tags:
+      - 首页
+  /api/v1/system/user:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除用户表信息
+        in: body
+        name: deleteSystemUser
+        required: true
+        schema:
+          $ref: '#/definitions/command.DeleteSystemUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemUser'
+              type: object
+      summary: 删除用户表
+      tags:
+      - 用户表信息
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        example: "0"
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemUser'
+              type: object
+      summary: 获取用户表
+      tags:
+      - 用户表信息
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建用户表信息
+        in: body
+        name: createSystemUser
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateSystemUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemUser'
+              type: object
+      summary: 创建用户表
+      tags:
+      - 用户表信息
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改用户表信息
+        in: body
+        name: updateSystemUser
+        required: true
+        schema:
+          $ref: '#/definitions/command.UpdateSystemUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemUser'
+              type: object
+      summary: 修改用户表
+      tags:
+      - 用户表信息
+  /api/v1/system/user/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改用户表信息
+        in: body
+        name: listSystemUser
+        required: true
+        schema:
+          $ref: '#/definitions/query.ListSystemUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/entity.SystemUser'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+      summary: 用户表列表
+      tags:
+      - 用户表信息
+  /api/v1/system/user/modify/password:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改密码
+        in: body
+        name: modifyPassword
+        required: true
+        schema:
+          $ref: '#/definitions/command.ModifyPassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemUser'
+              type: object
+      summary: 修改密码
+      tags:
+      - 用户表信息
+  /api/v1/system/user/reset/password:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 重置密码
+        in: body
+        name: resetPassword
+        required: true
+        schema:
+          $ref: '#/definitions/command.ResetPassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemUser'
+              type: object
+      summary: 重置密码
+      tags:
+      - 用户表信息
+  /api/v1/systemRole:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除角色信息
+        in: body
+        name: deleteSystemRole
+        required: true
+        schema:
+          $ref: '#/definitions/command.DeleteSystemRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemRole'
+              type: object
+      summary: 删除角色
+      tags:
+      - 角色信息
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 角色ID
+        example: "0"
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemRole'
+              type: object
+      summary: 获取角色
+      tags:
+      - 角色信息
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建角色信息
+        in: body
+        name: createSystemRole
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateSystemRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemRole'
+              type: object
+      summary: 创建角色
+      tags:
+      - 角色信息
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改角色信息
+        in: body
+        name: updateSystemRole
+        required: true
+        schema:
+          $ref: '#/definitions/command.UpdateSystemRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemRole'
+              type: object
+      summary: 修改角色
+      tags:
+      - 角色信息
+  /api/v1/systemRole/all:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/entity.CommonLabelValue'
+                  type: array
+              type: object
+      summary: 获取所有角色
+      tags:
+      - 角色信息
+  /api/v1/systemRole/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改角色信息
+        in: body
+        name: listSystemRole
+        required: true
+        schema:
+          $ref: '#/definitions/query.ListSystemRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/entity.SystemRole'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+      summary: 角色列表
+      tags:
+      - 角色信息
+  /api/v1/systemRole/permission:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/dto.SystemRolePermission'
+                  type: array
+              type: object
+      summary: 获取菜单权限
+      tags:
+      - 角色信息
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.SystemRole'
+              type: object
+      summary: 保存菜单权限
+      tags:
+      - 角色信息
+  /api/v1/video/info:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除视频信息
+        in: body
+        name: deleteVideoInfo
+        required: true
+        schema:
+          $ref: '#/definitions/command.DeleteVideoInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.VideoInfo'
+              type: object
+      summary: 删除视频
+      tags:
+      - 视频信息
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - example: "0"
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.VideoInfo'
+              type: object
+      summary: 获取视频
+      tags:
+      - 视频信息
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 新建视频信息
+        in: body
+        name: createVideoInfo
+        required: true
+        schema:
+          $ref: '#/definitions/command.CreateVideoInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.VideoInfo'
+              type: object
+      summary: 创建视频
+      tags:
+      - 视频信息
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改视频信息
+        in: body
+        name: updateVideoInfo
+        required: true
+        schema:
+          $ref: '#/definitions/command.UpdateVideoInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/entity.VideoInfo'
+              type: object
+      summary: 修改视频
+      tags:
+      - 视频信息
+  /api/v1/video/info/item/play/count:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: videoId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/aggregate.VideoItemPlayCount'
+                  type: array
+              type: object
+      summary: 获取视频明细播放统计
+      tags:
+      - 视频信息
+  /api/v1/video/info/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改视频信息
+        in: body
+        name: listVideoInfo
+        required: true
+        schema:
+          $ref: '#/definitions/query.ListVideoInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - type: object
+            - properties:
+                code:
+                  type: integer
+                data:
+                  allOf:
+                  - type: object
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/entity.VideoInfo'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+      summary: 视频列表
+      tags:
+      - 视频信息
+swagger: "2.0"
